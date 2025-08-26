@@ -54,8 +54,6 @@ function App() {
     });
   }
 
-  useEffect(() => {}, [curImageIndex]);
-
   useEffect(() => {
     if (addPressed) {
       setCartState({
@@ -68,11 +66,11 @@ function App() {
   }, [addPressed, numToAdd, cartState]);
 
   return (
-    <main className="min-h-screen md:px-40 relative bg-red-400">
+    <main className="min-h-screen lg:px-40 relative lg:mb-30">
       <Header
         toggleMenu={toggleMenu}
         menuOpen={menuOpen}
-        numToAdd={numToAdd}
+        cartTotal={cartState.itemNum}
         toggleCart={toggleCart}
       />
       <div className="  md:flex md:justify-center md:items-center md:p-10">

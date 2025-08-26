@@ -34,10 +34,14 @@ export default function Product({
             </button>
           </div>
         </div>
-        <div className=" hidden lg:row-start-7 lg:flex lg:justify-between lg:pt-6">
+        <div className="hidden lg:row-start-7 lg:flex lg:justify-between lg:pt-6">
           {["1", "2", "3", "4"].map((num) => (
             <img
-              className="w-26 h-26 object-cover lg:rounded-2xl cursor-pointer"
+              className={`w-26 h-26 object-cover rounded-2xl cursor-pointer ${
+                curImageIndex === parseInt(num)
+                  ? "border-4 border-cust-Orange opacity-50"
+                  : ""
+              }`}
               src={`/image-product-${num}-thumbnail.jpg`}
               alt={`Thumbnail ${num}`}
               key={num}
@@ -47,12 +51,14 @@ export default function Product({
       </section>
 
       {/* Product Info */}
-      <section className="flex flex-col p-6 gap-2 bg-cust-White lg:w-full lg:h-">
+      <section className="flex flex-col p-6 gap-2 bg-cust-White lg:w-full lg:h-full lg:justify-center lg:gap-6 lg:mt-4">
         <h1 className="uppercase text-cust-Dark-grayish-blue font-semibold text-sm">
           Sneaker Company
         </h1>
 
-        <h2 className="font-bold text-3xl">Fall Limited Edition Sneakers</h2>
+        <h2 className="font-bold text-3xl lg:text-4xl">
+          Fall Limited Edition Sneakers
+        </h2>
 
         <p className="text-cust-Dark-grayish-blue text-base mb-4">
           These low-profile sneakers are your perfect casual wear companion.
@@ -61,7 +67,7 @@ export default function Product({
         </p>
         {/* Prices */}
         <div
-          className="flex lg:flex-col justify-between items-center"
+          className="flex lg:flex-col justify-between items-center lg:items-start lg:gap-4"
           role="region"
           aria-label="Price information"
         >
