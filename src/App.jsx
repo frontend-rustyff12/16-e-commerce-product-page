@@ -9,10 +9,12 @@ function App() {
     setMenuOpen(!menuOpen);
   }
   return (
-    <main className="bg-blue-500 min-h-screen">
+    <main className="min-h-screen">
       <Header toggleMenu={toggleMenu} menuOpen={menuOpen} />
-      <ProductImage />
-      <ProductInfo />
+      <section>
+        <ProductImage />
+        <ProductInfo />
+      </section>
     </main>
   );
 }

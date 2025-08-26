@@ -41,9 +41,9 @@ export default function ProductInfo() {
         </span>
       </div>
       {/* Cart buttons */}
-      <div className="flex flex-col">
+      <div className="flex flex-col  md:flex-row md:items-center">
         <div
-          className="flex justify-between items-center my-4 p-4"
+          className="flex justify-between items-center my-4 p-4 bg-cust-Light-grayish-blue rounded-lg"
           role="group"
           aria-label="Quantity selector"
         >
