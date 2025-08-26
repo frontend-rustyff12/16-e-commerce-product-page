@@ -5,13 +5,18 @@ import CartModal from "./components/CartModal";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [numToAdd, setNumToAdd] = useState(1);
+  const [numToAdd, setNumToAdd] = useState(0);
   const [isCartShowing, setIsCartShowing] = useState(true);
-  const [total, setTotal] = useState("");
+
   const [addPressed, setAddPressed] = useState(false);
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
+
+  const [cartState, setCartState] = useState({
+    itemNum: 0,
+    total: "0.00",
+  });
 
   function handleClick(symbol) {
     if (symbol === "-" && numToAdd === 0) {
@@ -31,15 +36,26 @@ function App() {
     setAddPressed(true);
   }
 
+  function deleteCart() {
+    setCartState({
+      itemNum: 0,
+      total: "0.00",
+    });
+  }
+
   useEffect(() => {
     if (addPressed) {
-      setTotal((125.0 * numToAdd).toFixed(2));
+      setCartState({
+        itemNum: (cartState.itemNum += numToAdd),
+        total: (125.0 * cartState.itemNum).toFixed(2),
+      });
+      setNumToAdd(0);
     }
     setAddPressed(false);
-  }, [addPressed, numToAdd]);
+  }, [addPressed, numToAdd, cartState]);
 
   return (
-    <main className="min-h-screen md:px-40 relative">
+    <main className="min-h-screen md:px-40 relative bg-red-400">
       <Header
         toggleMenu={toggleMenu}
         menuOpen={menuOpen}
@@ -53,11 +69,12 @@ function App() {
           handleAddPressed={handleAddPressed}
         />
       </div>
-      <section className="absolute top-20 left-1/2 -translate-x-1/2">
+      <section className="absolute top-20 left-1/2 -translate-x-1/2 lg:right-34 lg:left-auto lg:translate-x-0">
         <CartModal
-          numToAdd={numToAdd}
+          numToAdd={cartState.itemNum}
           isCartShowing={isCartShowing}
-          total={total}
+          total={cartState.total}
+          deleteCart={deleteCart}
         />
       </section>
     </main>

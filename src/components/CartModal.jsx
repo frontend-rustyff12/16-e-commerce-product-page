@@ -1,7 +1,12 @@
-export default function CartModal({ total, isCartShowing, numToAdd }) {
+export default function CartModal({
+  total,
+  isCartShowing,
+  numToAdd,
+  deleteCart,
+}) {
   return (
     <article
-      className={`w-[97vw] bg-cust-White aspect-video rounded-lg font-kumbh-sans  ${
+      className={`w-[97vw] bg-cust-White aspect-video rounded-lg font-kumbh-sans lg:w-84 lg:shadow-[0px_11px_12px_5px_rgba(0,_0,_0,_0.1)] ${
         isCartShowing ? "" : "hidden"
       }`}
     >
@@ -9,7 +14,7 @@ export default function CartModal({ total, isCartShowing, numToAdd }) {
         <h3 className="text-lg font-bold">Cart</h3>
       </div>
 
-      <div className="h-full p-8 rounded-b-lg  ">
+      <div className="h-full p-8 lg:px-6 rounded-b-lg  flex justify-center items-center ">
         {total > 0 ? (
           <div className="w-full h-full grid grid-cols-1 grid-rows-2 gap-8 ">
             <div className="flex gap-3 justify-between items-center">
@@ -19,20 +24,22 @@ export default function CartModal({ total, isCartShowing, numToAdd }) {
                 alt=""
               />
               <div>
-                <p className="text-cust-Dark-grayish-blue">
+                <p className="text-cust-Dark-grayish-blue lg:text-sm">
                   Fall Limited Edition Sneakers
                 </p>
                 <div>
-                  <span className="text-cust-Dark-grayish-blue">$125.00 </span>
-                  <span className="text-cust-Dark-grayish-blue">
+                  <span className="text-cust-Dark-grayish-blue lg:text-sm">
+                    $125.00{" "}
+                  </span>
+                  <span className="text-cust-Dark-grayish-blue lg:text-sm">
                     x {numToAdd}
                   </span>
-                  <span className="font-bold"> ${total}</span>
+                  <span className="font-bold lg:text-sm"> ${total}</span>
                 </div>
               </div>
-              <button>
+              <button onClick={deleteCart}>
                 <img
-                  className="w-4 h-4 self-center "
+                  className="w-4 h-4 self-center"
                   src="/icon-delete.svg"
                   alt=""
                 />
