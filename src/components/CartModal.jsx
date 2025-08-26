@@ -1,4 +1,4 @@
-export default function CartModal({ numToAdd, isCartShowing }) {
+export default function CartModal({ total, isCartShowing, numToAdd }) {
   return (
     <article
       className={`w-[97vw] bg-cust-White aspect-video rounded-lg font-kumbh-sans  ${
@@ -10,7 +10,7 @@ export default function CartModal({ numToAdd, isCartShowing }) {
       </div>
 
       <div className="h-full p-8 rounded-b-lg  ">
-        {numToAdd > 0 ? (
+        {total > 0 ? (
           <div className="w-full h-full grid grid-cols-1 grid-rows-2 gap-8 ">
             <div className="flex gap-3 justify-between items-center">
               <img
@@ -24,8 +24,10 @@ export default function CartModal({ numToAdd, isCartShowing }) {
                 </p>
                 <div>
                   <span className="text-cust-Dark-grayish-blue">$125.00 </span>
-                  <span className="text-cust-Dark-grayish-blue">x 3</span>
-                  <span className="font-bold"> $375.00</span>
+                  <span className="text-cust-Dark-grayish-blue">
+                    x {numToAdd}
+                  </span>
+                  <span className="font-bold"> ${total}</span>
                 </div>
               </div>
               <button>

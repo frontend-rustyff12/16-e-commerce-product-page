@@ -1,4 +1,4 @@
-export default function Product({ handleClick, numToAdd }) {
+export default function Product({ handleClick, numToAdd, handleAddPressed }) {
   const buttonClass =
     "bg-cust-White absolute top-1/2 transform -translate-y-1/2 p-2 rounded-full flex items-center justify-center w-10 h-10";
 
@@ -33,7 +33,7 @@ export default function Product({ handleClick, numToAdd }) {
         </p>
         {/* Prices */}
         <div
-          className="flex md:flex-col justify-between"
+          className="flex md:flex-col justify-between items-center"
           role="region"
           aria-label="Price information"
         >
@@ -47,6 +47,7 @@ export default function Product({ handleClick, numToAdd }) {
             <del>$250.00</del>
           </span>
         </div>
+
         {/* Cart buttons */}
         <div className="flex flex-col md:flex-row md:items-center md:gap-6 md:justify-between">
           <div
@@ -76,7 +77,10 @@ export default function Product({ handleClick, numToAdd }) {
               <span className="text-3xl text-cust-Orange font-bold">+</span>
             </button>
           </div>
-          <button className="flex justify-center items-center gap-3 bg-cust-Orange p-4 rounded-lg font-bold text-cust-Very-dark-blue mb-14 md:mb-0 cursor-pointer hover:bg-cust-Pale-orange w-full">
+          <button
+            onClick={handleAddPressed}
+            className="flex justify-center items-center gap-3 bg-cust-Orange p-4 rounded-lg font-bold text-cust-Very-dark-blue mb-14 md:mb-0 cursor-pointer hover:bg-cust-Pale-orange w-full"
+          >
             <svg
               className=" fill-cust-Very-dark-blue"
               width="22"
