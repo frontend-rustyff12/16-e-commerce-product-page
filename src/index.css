@@ -38,6 +38,10 @@
   transform: translateY(48px);
 }
 
+html {
+  font-size: 15px;
+}
+
 /* *,
 *::before,
 *::after {

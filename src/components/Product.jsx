@@ -8,7 +8,7 @@ export default function Product({ handleClick, numToAdd }) {
     <div className="font-kumbh-sans md:flex md:gap-10 ">
       {/* Product Images */}
       <section className="md:w-full ">
-        <div className="bg-[url('/image-product-1.jpg')] bg-cover h-74 relative">
+        <div className="bg-[url('/image-product-1.jpg')] bg-cover h-82 relative">
           <button className={`${buttonClass} left-4`}>
             <img src="/icon-previous.svg" alt="Previous" className="w-3 h-3" />
           </button>
