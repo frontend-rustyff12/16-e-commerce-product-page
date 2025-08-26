@@ -22,6 +22,22 @@
   ); /* (with 75% opacity for lightbox background) */
 }
 
+.nav-item {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-item:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #f08c33;
+  transform: translateY(48px);
+}
+
 /* *,
 *::before,
 *::after {
