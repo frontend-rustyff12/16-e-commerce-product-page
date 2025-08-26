@@ -6,7 +6,7 @@ export default function CartModal({
 }) {
   return (
     <article
-      className={`w-[97vw] bg-cust-White aspect-video rounded-lg font-kumbh-sans lg:w-84 lg:shadow-[0px_11px_12px_5px_rgba(0,_0,_0,_0.1)] ${
+      className={`absolute top-20 left-1/2 -translate-x-1/2 lg:right-34 lg:left-auto lg:translate-x-0 w-[97vw] bg-cust-White aspect-video rounded-lg font-kumbh-sans lg:w-84 lg:shadow-[0px_11px_12px_5px_rgba(0,_0,_0,_0.1)] ${
         isCartShowing ? "" : "hidden"
       }`}
     >
@@ -37,7 +37,7 @@ export default function CartModal({
                   <span className="font-bold lg:text-sm"> ${total}</span>
                 </div>
               </div>
-              <button onClick={deleteCart}>
+              <button onClick={deleteCart} className="cursor-pointer">
                 <img
                   className="w-4 h-4 self-center"
                   src="/icon-delete.svg"

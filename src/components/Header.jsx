@@ -1,7 +1,7 @@
 export default function Header({ cartTotal, toggleCart }) {
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
   return (
-    <header className="bg-cust-White flex justify-between items-center p-6 lg:p-10 lg:border-b-1 lg:border-b-cust-Grayish-blue">
+    <header className="bg-cust-White flex justify-between items-center p-6 lg:p-10 lg:border-b-1 lg:border-b-cust-Grayish-blue lg:w-6xl">
       <div className="flex justify-center items-center gap-4 lg:gap-8">
         <button className="absolute left-6 lg:hidden">
           <img className="h-full" src="/icon-menu.svg" alt="" />
@@ -22,8 +22,8 @@ export default function Header({ cartTotal, toggleCart }) {
           ))}
         </ul>
       </div>
-      <div className="flex justify-center items-center gap-6 lg:gap-12">
-        <button onClick={toggleCart}>
+      <div className="flex justify-center items-center absolute right-6 gap-6 lg:gap-12 ">
+        <button onClick={toggleCart} className="cursor-pointer  ">
           <img className="" src="/icon-cart.svg" alt="" />
           {cartTotal > 0 ? (
             <span className="absolute top-4 lg:top-10 bg-cust-Orange rounded-full px-1.5 lg:px-2 text-[10px] lg:text-xs  text-cust-White font-bold">

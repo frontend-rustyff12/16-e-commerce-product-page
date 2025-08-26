@@ -2,31 +2,26 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Product from "./components/Product";
 import CartModal from "./components/CartModal";
+import ImageModal from "./components/ImageModal";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [numToAdd, setNumToAdd] = useState(0);
   const [isCartShowing, setIsCartShowing] = useState(false);
   const [curImageIndex, setCurImageIndex] = useState(1);
-
   const [addPressed, setAddPressed] = useState(false);
-  function toggleMenu() {
-    setMenuOpen(!menuOpen);
-  }
-
   const [cartState, setCartState] = useState({
     itemNum: 0,
     total: "0.00",
   });
 
+  function toggleMenu() {
+    setMenuOpen(!menuOpen);
+  }
+
   function handleClick(symbol) {
-    if (symbol === "-" && numToAdd === 0) {
-      return;
-    } else if (symbol === "-") {
-      setNumToAdd(numToAdd - 1);
-    } else {
-      setNumToAdd(numToAdd + 1);
-    }
+    if (symbol === "-" && numToAdd === 0) return;
+    setNumToAdd((prev) => (symbol === "-" ? prev - 1 : prev + 1));
   }
 
   function toggleCart() {
@@ -54,19 +49,28 @@ function App() {
     });
   }
 
+  function clickImage(num) {
+    console.log("Clicked thumbnail:", num, "Parsed:", parseInt(num));
+    setCurImageIndex(parseInt(num));
+  }
+
   useEffect(() => {
     if (addPressed) {
-      setCartState({
-        itemNum: (cartState.itemNum += numToAdd),
-        total: (125.0 * cartState.itemNum).toFixed(2),
-      });
+      setCartState((prev) => ({
+        itemNum: prev.itemNum + numToAdd,
+        total: (125.0 * (prev.itemNum + numToAdd)).toFixed(2),
+      }));
       setNumToAdd(0);
+      setAddPressed(false);
     }
-    setAddPressed(false);
-  }, [addPressed, numToAdd, cartState]);
+  }, [addPressed, numToAdd]);
+
+  useEffect(() => {
+    console.log("curImageIndex updated:", curImageIndex);
+  }, [curImageIndex]);
 
   return (
-    <main className="min-h-screen lg:px-40 relative lg:mb-30">
+    <main className="flex flex-col items-center">
       <Header
         toggleMenu={toggleMenu}
         menuOpen={menuOpen}
@@ -80,9 +84,10 @@ function App() {
           handleAddPressed={handleAddPressed}
           cycleImage={cycleImage}
           curImageIndex={curImageIndex}
+          clickImage={clickImage}
         />
       </div>
-      <section className="absolute top-20 left-1/2 -translate-x-1/2 lg:right-34 lg:left-auto lg:translate-x-0">
+      <section className="">
         <CartModal
           numToAdd={cartState.itemNum}
           isCartShowing={isCartShowing}
@@ -90,6 +95,7 @@ function App() {
           deleteCart={deleteCart}
         />
       </section>
+      <ImageModal curImageIndex={curImageIndex} cycleImage={cycleImage} />
     </main>
   );
 }

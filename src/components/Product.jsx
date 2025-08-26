@@ -4,18 +4,22 @@ export default function Product({
   handleAddPressed,
   cycleImage,
   curImageIndex,
+  clickImage,
 }) {
   const buttonClass =
     "bg-cust-White absolute top-1/2 transform -translate-y-1/2 p-2 rounded-full flex items-center justify-center w-10 h-10 lg:hidden";
 
   return (
-    <div className="font-kumbh-sans lg:flex lg:gap-28  lg:h-[500px]">
+    <div className="font-kumbh-sans lg:flex lg:gap-28  lg:h-[500px] lg:mt-16 lg:mb-22 lg:w-6xl lg:px-8">
       {/* Product Images */}
-      <section className="lg:w-full lg:h-full lg:grid lg:grid-rows-7">
+      <section className="lg:w-full lg:h-full lg:grid lg:grid-rows-7 lg:gap-3">
         <div className="lg:row-start-1 lg:row-end-7">
-          <div
-            className={`bg-[url('/image-product-${curImageIndex}.jpg')] bg-cover h-82 relative lg:h-full lg:rounded-2xl`}
-          >
+          <div className="relative">
+            <img
+              className="w-full h-82 lg:h-full lg:rounded-2xl "
+              src={`/image-product-${curImageIndex}.jpg`}
+              alt=""
+            />
             <button
               onClick={() => cycleImage("left")}
               className={`${buttonClass} left-4`}
@@ -36,16 +40,25 @@ export default function Product({
         </div>
         <div className="hidden lg:row-start-7 lg:flex lg:justify-between lg:pt-6">
           {["1", "2", "3", "4"].map((num) => (
-            <img
-              className={`w-26 h-26 object-cover rounded-2xl cursor-pointer ${
+            <div
+              key={num}
+              onClick={() => clickImage(num)}
+              className={`bg-white rounded-2xl w-26 h-26 hover:opacity-70 hover:border-4 hover:border-cust-Orange ${
                 curImageIndex === parseInt(num)
-                  ? "border-4 border-cust-Orange opacity-50"
+                  ? "border-4 border-cust-Orange"
                   : ""
               }`}
-              src={`/image-product-${num}-thumbnail.jpg`}
-              alt={`Thumbnail ${num}`}
-              key={num}
-            />
+            >
+              <img
+                className={`object-cover rounded-xl ${
+                  curImageIndex === parseInt(num)
+                    ? "opacity-70"
+                    : "cursor-pointer"
+                }`}
+                src={`/image-product-${num}-thumbnail.jpg`}
+                alt={`Thumbnail ${num}`}
+              />
+            </div>
           ))}
         </div>
       </section>
