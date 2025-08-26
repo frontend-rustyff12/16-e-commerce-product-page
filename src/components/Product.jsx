@@ -1,25 +1,53 @@
-export default function Product({ handleClick, numToAdd, handleAddPressed }) {
+export default function Product({
+  handleClick,
+  numToAdd,
+  handleAddPressed,
+  cycleImage,
+  curImageIndex,
+}) {
   const buttonClass =
-    "bg-cust-White absolute top-1/2 transform -translate-y-1/2 p-2 rounded-full flex items-center justify-center w-10 h-10";
-
-  // md:max-w-6xl
+    "bg-cust-White absolute top-1/2 transform -translate-y-1/2 p-2 rounded-full flex items-center justify-center w-10 h-10 lg:hidden";
 
   return (
-    <div className="font-kumbh-sans md:flex md:gap-10 ">
+    <div className="font-kumbh-sans lg:flex lg:gap-28  lg:h-[500px]">
       {/* Product Images */}
-      <section className="md:w-full ">
-        <div className="bg-[url('/image-product-1.jpg')] bg-cover h-82 relative">
-          <button className={`${buttonClass} left-4`}>
-            <img src="/icon-previous.svg" alt="Previous" className="w-3 h-3" />
-          </button>
-          <button className={`${buttonClass} right-4`}>
-            <img src="/icon-next.svg" alt="Next" className="w-3 h-3" />
-          </button>
+      <section className="lg:w-full lg:h-full lg:grid lg:grid-rows-7">
+        <div className="lg:row-start-1 lg:row-end-7">
+          <div
+            className={`bg-[url('/image-product-${curImageIndex}.jpg')] bg-cover h-82 relative lg:h-full lg:rounded-2xl`}
+          >
+            <button
+              onClick={() => cycleImage("left")}
+              className={`${buttonClass} left-4`}
+            >
+              <img
+                src="/icon-previous.svg"
+                alt="Previous"
+                className="w-3 h-3"
+              />
+            </button>
+            <button
+              onClick={() => cycleImage("right")}
+              className={`${buttonClass} right-4`}
+            >
+              <img src="/icon-next.svg" alt="Next" className="w-3 h-3" />
+            </button>
+          </div>
+        </div>
+        <div className=" hidden lg:row-start-7 lg:flex lg:justify-between lg:pt-6">
+          {["1", "2", "3", "4"].map((num) => (
+            <img
+              className="w-26 h-26 object-cover lg:rounded-2xl cursor-pointer"
+              src={`/image-product-${num}-thumbnail.jpg`}
+              alt={`Thumbnail ${num}`}
+              key={num}
+            />
+          ))}
         </div>
       </section>
 
       {/* Product Info */}
-      <section className="flex flex-col p-6 gap-2 bg-cust-White md:w-full">
+      <section className="flex flex-col p-6 gap-2 bg-cust-White lg:w-full lg:h-">
         <h1 className="uppercase text-cust-Dark-grayish-blue font-semibold text-sm">
           Sneaker Company
         </h1>
@@ -33,7 +61,7 @@ export default function Product({ handleClick, numToAdd, handleAddPressed }) {
         </p>
         {/* Prices */}
         <div
-          className="flex md:flex-col justify-between items-center"
+          className="flex lg:flex-col justify-between items-center"
           role="region"
           aria-label="Price information"
         >
@@ -49,7 +77,7 @@ export default function Product({ handleClick, numToAdd, handleAddPressed }) {
         </div>
 
         {/* Cart buttons */}
-        <div className="flex flex-col md:flex-row md:items-center md:gap-6 md:justify-between">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-6 lg:justify-between">
           <div
             className="flex justify-between items-center my-4 p-4 bg-cust-Light-grayish-blue rounded-lg w-full"
             role="group"
@@ -79,7 +107,7 @@ export default function Product({ handleClick, numToAdd, handleAddPressed }) {
           </div>
           <button
             onClick={handleAddPressed}
-            className="flex justify-center items-center gap-3 bg-cust-Orange p-4 rounded-lg font-bold text-cust-Very-dark-blue mb-14 md:mb-0 cursor-pointer hover:bg-cust-Pale-orange w-full"
+            className="flex justify-center items-center gap-3 bg-cust-Orange p-4 rounded-lg font-bold text-cust-Very-dark-blue mb-14 lg:mb-0 cursor-pointer hover:bg-cust-Pale-orange w-full"
           >
             <svg
               className=" fill-cust-Very-dark-blue"

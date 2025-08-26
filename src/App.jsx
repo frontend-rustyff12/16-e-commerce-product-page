@@ -6,7 +6,8 @@ import CartModal from "./components/CartModal";
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [numToAdd, setNumToAdd] = useState(0);
-  const [isCartShowing, setIsCartShowing] = useState(true);
+  const [isCartShowing, setIsCartShowing] = useState(false);
+  const [curImageIndex, setCurImageIndex] = useState(1);
 
   const [addPressed, setAddPressed] = useState(false);
   function toggleMenu() {
@@ -43,6 +44,18 @@ function App() {
     });
   }
 
+  function cycleImage(direction) {
+    setCurImageIndex((prevIndex) => {
+      if (direction === "left") {
+        return prevIndex === 1 ? 4 : prevIndex - 1;
+      } else {
+        return prevIndex === 4 ? 1 : prevIndex + 1;
+      }
+    });
+  }
+
+  useEffect(() => {}, [curImageIndex]);
+
   useEffect(() => {
     if (addPressed) {
       setCartState({
@@ -67,6 +80,8 @@ function App() {
           handleClick={handleClick}
           numToAdd={numToAdd}
           handleAddPressed={handleAddPressed}
+          cycleImage={cycleImage}
+          curImageIndex={curImageIndex}
         />
       </div>
       <section className="absolute top-20 left-1/2 -translate-x-1/2 lg:right-34 lg:left-auto lg:translate-x-0">
