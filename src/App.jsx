@@ -9,6 +9,7 @@ function App() {
   const [numToAdd, setNumToAdd] = useState(0);
   const [isCartShowing, setIsCartShowing] = useState(false);
   const [curImageIndex, setCurImageIndex] = useState(1);
+  const [curModalImageIndex, setCurModalImageIndex] = useState(1);
   const [addPressed, setAddPressed] = useState(false);
   const [cartState, setCartState] = useState({
     itemNum: 0,
@@ -49,9 +50,19 @@ function App() {
     });
   }
 
+  function cycleModalImage(direction) {
+    setCurModalImageIndex((prevIndex) => {
+      if (direction === "left") {
+        return prevIndex === 1 ? 4 : prevIndex - 1;
+      } else {
+        return prevIndex === 4 ? 1 : prevIndex + 1;
+      }
+    });
+  }
+
   function clickImage(num) {
-    console.log("Clicked thumbnail:", num, "Parsed:", parseInt(num));
     setCurImageIndex(parseInt(num));
+    setCurModalImageIndex(parseInt(num));
   }
 
   function openImageModal() {
@@ -72,10 +83,6 @@ function App() {
       setAddPressed(false);
     }
   }, [addPressed, numToAdd]);
-
-  useEffect(() => {
-    console.log("curImageIndex updated:", curImageIndex);
-  }, [curImageIndex]);
 
   return (
     <main className="flex flex-col items-center">
@@ -101,8 +108,8 @@ function App() {
         deleteCart={deleteCart}
       />
       <ImageModal
-        curImageIndex={curImageIndex}
-        cycleImage={cycleImage}
+        curModalImageIndex={curModalImageIndex}
+        cycleModalImage={cycleModalImage}
         closeImageModal={closeImageModal}
         isImageModalOpen={isImageModalOpen}
       />

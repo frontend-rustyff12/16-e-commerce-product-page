@@ -1,6 +1,6 @@
 export default function ImageModal({
-  curImageIndex,
-  cycleImage,
+  curModalImageIndex,
+  cycleModalImage,
   closeImageModal,
   isImageModalOpen,
 }) {
@@ -24,16 +24,16 @@ export default function ImageModal({
         </p>
         <img
           className=" h-full w-full rounded-2xl"
-          src={`/image-product-${curImageIndex}.jpg`}
+          src={`/image-product-${curModalImageIndex}.jpg`}
         />
         <button
-          onClick={() => cycleImage("left")}
+          onClick={() => cycleModalImage("left")}
           className={`${buttonClass} left-0 -translate-x-7`}
         >
           <img src="/icon-previous.svg" alt="Previous" className="w-5 h-5" />
         </button>
         <button
-          onClick={() => cycleImage("right")}
+          onClick={() => cycleModalImage("right")}
           className={`${buttonClass} right-0 translate-6`}
         >
           <img src="/icon-next.svg" alt="Next" className="w-5 h-5" />
@@ -43,7 +43,7 @@ export default function ImageModal({
         {["1", "2", "3", "4"].map((num) => (
           <div
             className={`bg-white rounded-2xl w-20 h-20   ${
-              curImageIndex === parseInt(num)
+              curModalImageIndex === parseInt(num)
                 ? "border-4 border-cust-Orange "
                 : ""
             }`}
@@ -51,7 +51,7 @@ export default function ImageModal({
           >
             <img
               className={` object-cover rounded-xl  ${
-                curImageIndex === parseInt(num)
+                curModalImageIndex === parseInt(num)
                   ? " opacity-70 "
                   : "cursor-pointer"
               }`}
