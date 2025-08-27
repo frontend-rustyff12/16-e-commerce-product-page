@@ -17,6 +17,7 @@ function App() {
   });
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   function toggleMenu() {
+    console.log(menuOpen);
     setMenuOpen(!menuOpen);
   }
 
@@ -83,6 +84,18 @@ function App() {
       setAddPressed(false);
     }
   }, [addPressed, numToAdd]);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <main className="flex flex-col items-center">
