@@ -14,7 +14,7 @@ function App() {
     itemNum: 0,
     total: "0.00",
   });
-
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
@@ -54,6 +54,14 @@ function App() {
     setCurImageIndex(parseInt(num));
   }
 
+  function openImageModal() {
+    setIsImageModalOpen(true);
+  }
+
+  function closeImageModal() {
+    setIsImageModalOpen(false);
+  }
+
   useEffect(() => {
     if (addPressed) {
       setCartState((prev) => ({
@@ -77,25 +85,27 @@ function App() {
         cartTotal={cartState.itemNum}
         toggleCart={toggleCart}
       />
-      <div className="  md:flex md:justify-center md:items-center md:p-10">
-        <Product
-          handleClick={handleClick}
-          numToAdd={numToAdd}
-          handleAddPressed={handleAddPressed}
-          cycleImage={cycleImage}
-          curImageIndex={curImageIndex}
-          clickImage={clickImage}
-        />
-      </div>
-      <section className="">
-        <CartModal
-          numToAdd={cartState.itemNum}
-          isCartShowing={isCartShowing}
-          total={cartState.total}
-          deleteCart={deleteCart}
-        />
-      </section>
-      <ImageModal curImageIndex={curImageIndex} cycleImage={cycleImage} />
+      <Product
+        handleClick={handleClick}
+        numToAdd={numToAdd}
+        handleAddPressed={handleAddPressed}
+        cycleImage={cycleImage}
+        curImageIndex={curImageIndex}
+        clickImage={clickImage}
+        openImageModal={openImageModal}
+      />
+      <CartModal
+        numToAdd={cartState.itemNum}
+        isCartShowing={isCartShowing}
+        total={cartState.total}
+        deleteCart={deleteCart}
+      />
+      <ImageModal
+        curImageIndex={curImageIndex}
+        cycleImage={cycleImage}
+        closeImageModal={closeImageModal}
+        isImageModalOpen={isImageModalOpen}
+      />
     </main>
   );
 }

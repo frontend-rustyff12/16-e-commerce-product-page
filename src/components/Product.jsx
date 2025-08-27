@@ -5,18 +5,20 @@ export default function Product({
   cycleImage,
   curImageIndex,
   clickImage,
+  openImageModal,
 }) {
   const buttonClass =
     "bg-cust-White absolute top-1/2 transform -translate-y-1/2 p-2 rounded-full flex items-center justify-center w-10 h-10 lg:hidden";
 
   return (
-    <div className="font-kumbh-sans lg:flex lg:gap-28  lg:h-[500px] lg:mt-16 lg:mb-22 lg:w-6xl lg:px-8">
+    <div className="font-kumbh-sans sm:w-7/12 sm:pt-20 lg:flex lg:gap-28  lg:h-[500px] lg:mt-16 lg:mb-22 lg:w-6xl lg:px-8  lg:justify-center lg:items-center lg:p-10">
       {/* Product Images */}
       <section className="lg:w-full lg:h-full lg:grid lg:grid-rows-7 lg:gap-3">
         <div className="lg:row-start-1 lg:row-end-7">
           <div className="relative">
             <img
-              className="w-full h-82 lg:h-full lg:rounded-2xl "
+              onClick={openImageModal}
+              className="w-full h-82 lg:h-96 lg:rounded-2xl pointer-events-none lg:pointer-events-auto lg:cursor-pointer"
               src={`/image-product-${curImageIndex}.jpg`}
               alt=""
             />

@@ -22,7 +22,7 @@ export default function Header({ cartTotal, toggleCart }) {
           ))}
         </ul>
       </div>
-      <div className="flex justify-center items-center absolute right-6 gap-6 lg:gap-12 ">
+      <div className="flex justify-center items-center absolute right-6 gap-6 lg:gap-12 lg:right-40">
         <button onClick={toggleCart} className="cursor-pointer  ">
           <img className="" src="/icon-cart.svg" alt="" />
           {cartTotal > 0 ? (
