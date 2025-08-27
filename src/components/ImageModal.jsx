@@ -14,40 +14,59 @@ export default function ImageModal({
           ? "hidden"
           : "absolute top-0 h-full w-full bg-cust-Black/75 px-20 pt-40 grid grid-cols-3 grid-rows-[110px_110px_110px_110px_30px_110px]"
       } `}
+      role="dialog"
+      aria-labelledby="image-modal-title"
+      aria-modal="true"
     >
       <div className="col-start-2 col-end-3 row-start-1 row-end-5 relative">
-        <p
+        <button
           onClick={closeImageModal}
           className="absolute right-10 -translate-y-10 cursor-pointer font-bold text-xl text-cust-Dark-grayish-blue hover:text-cust-Orange transition delay-150 ease"
+          aria-label="Close image modal"
         >
           X
-        </p>
+        </button>
         <img
           className=" h-full w-full rounded-2xl"
           src={`/image-product-${curModalImageIndex}.jpg`}
+          alt={`Fall Limited Edition Sneakers, image ${curModalImageIndex}`}
         />
         <button
           onClick={() => cycleModalImage("left")}
           className={`${buttonClass} left-0 -translate-x-7`}
+          aria-label="Previous image"
         >
-          <img src="/icon-previous.svg" alt="Previous" className="w-5 h-5" />
+          <img
+            src="/icon-previous.svg"
+            alt="Previous"
+            className="w-5 h-5"
+            aria-hidden="true"
+          />
         </button>
         <button
           onClick={() => cycleModalImage("right")}
           className={`${buttonClass} right-0 translate-6`}
+          aria-label="Next image"
         >
-          <img src="/icon-next.svg" alt="Next" className="w-5 h-5" />
+          <img
+            src="/icon-next.svg"
+            alt="Next"
+            className="w-5 h-5"
+            aria-hidden="true"
+          />
         </button>
       </div>
+      {/* Thumbnail images */}
       <div className="flex justify-between col-start-2 col-end-3 row-start-6 row-end-7 px-8">
         {["1", "2", "3", "4"].map((num) => (
-          <div
+          <button
             className={`bg-white rounded-2xl w-20 h-20   ${
               curModalImageIndex === parseInt(num)
                 ? "border-4 border-cust-Orange "
                 : ""
             }`}
             key={num}
+            aria-label={`Select image ${num}`}
           >
             <img
               className={` object-cover rounded-xl  ${
@@ -56,9 +75,10 @@ export default function ImageModal({
                   : "cursor-pointer"
               }`}
               src={`/image-product-${num}-thumbnail.jpg`}
-              alt={`Thumbnail ${num}`}
+              alt=""
+              aria-hidden="true"
             />
-          </div>
+          </button>
         ))}
       </div>
     </section>
